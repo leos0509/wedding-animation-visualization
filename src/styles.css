@@ -1,21 +1,24 @@
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&display=swap");
 
-@import 'tw-animate-css';
+@import "tailwindcss";
+
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 body {
-  @apply m-0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  @apply m-0 box-border p-0;
+  /* font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 code {
   font-family:
-    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 :root {
@@ -126,6 +129,22 @@ code {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom Pallete */
+  --color-cultured: #f4f4f4;
+  --color-cotton: #edebde;
+  --color-cherry: #800100;
+  --color-maroon: #630100;
+  --color-dark-gray: #1b1716;
+
+  --font-sans:
+    "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+
+  --font-serif:
+    "Cormorant Infant", ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif;
 }
 
 @layer base {
@@ -133,6 +152,31 @@ code {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cultured text-dark-gray font-sans;
+  }
+}
+
+@layer components {
+  .container-wrapper {
+    @apply bg-cotton flex min-h-full w-full flex-col items-center justify-center gap-2 px-2 pt-18 pb-4 md:px-16 md:pt-24 md:pb-8;
+  }
+
+  .serif-header {
+    @apply text-maroon text-center font-serif text-3xl font-semibold uppercase;
+  }
+
+  .description {
+    @apply text-center font-light;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    background: rgba(237, 235, 222, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(237, 235, 222, 0.66);
   }
 }

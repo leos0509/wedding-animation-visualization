@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 const NavList = [
   { to: "/", label: "Home" },
   { to: "/wishes", label: "Wishes" },
-  { to: "/dashboard", label: "Dashboard" },
+  { to: "/split-text", label: "Split Text" },
 ];
 
 export default function Header() {

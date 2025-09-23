@@ -31,7 +31,7 @@ const lines: Line[] = [
 function calculateTotalDelay(index: number) {
   let totalDelay = 0;
   for (let i = 0; i < index; i++) {
-    totalDelay += lines[i].text.length * 0.1;
+    totalDelay += lines[i].text.length * 0.05;
   }
   return totalDelay;
 }

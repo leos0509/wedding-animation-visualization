@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishesRouteImport } from './routes/wishes'
 import { Route as SplitTextRouteImport } from './routes/split-text'
+import { Route as NavMenuRouteImport } from './routes/nav-menu'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WishesRoute = WishesRouteImport.update({
@@ -23,6 +24,11 @@ const SplitTextRoute = SplitTextRouteImport.update({
   path: '/split-text',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NavMenuRoute = NavMenuRouteImport.update({
+  id: '/nav-menu',
+  path: '/nav-menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/nav-menu': typeof NavMenuRoute
   '/split-text': typeof SplitTextRoute
   '/wishes': typeof WishesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/nav-menu': typeof NavMenuRoute
   '/split-text': typeof SplitTextRoute
   '/wishes': typeof WishesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/nav-menu': typeof NavMenuRoute
   '/split-text': typeof SplitTextRoute
   '/wishes': typeof WishesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/split-text' | '/wishes'
+  fullPaths: '/' | '/nav-menu' | '/split-text' | '/wishes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/split-text' | '/wishes'
-  id: '__root__' | '/' | '/split-text' | '/wishes'
+  to: '/' | '/nav-menu' | '/split-text' | '/wishes'
+  id: '__root__' | '/' | '/nav-menu' | '/split-text' | '/wishes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  NavMenuRoute: typeof NavMenuRoute
   SplitTextRoute: typeof SplitTextRoute
   WishesRoute: typeof WishesRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplitTextRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nav-menu': {
+      id: '/nav-menu'
+      path: '/nav-menu'
+      fullPath: '/nav-menu'
+      preLoaderRoute: typeof NavMenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  NavMenuRoute: NavMenuRoute,
   SplitTextRoute: SplitTextRoute,
   WishesRoute: WishesRoute,
 }

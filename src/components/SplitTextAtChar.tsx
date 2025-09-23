@@ -30,7 +30,7 @@ const SplitTextAtChar = ({
           animate={{ y: 0, x: 0 }}
           transition={{
             duration: 0.1,
-            delay: i * 0.1 + delay,
+            delay: i * 0.05 + delay,
             type: "tween",
             ease: "easeInOut",
           }}
@@ -53,7 +53,7 @@ const SplitTextAtChar = ({
           <motion.span
             initial={{ y: "100%", x: -8 }}
             animate={{ y: 0, x: 0 }}
-            transition={{ delay: i * 0.05, type: "tween", ease: "easeInOut" }}
+            transition={{ delay: i * 0.05 + delay, type: "tween", ease: "easeInOut" }}
             className="inline-block italic"
           >
             {char === " " ? "\u00A0" : char}

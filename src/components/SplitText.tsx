@@ -1,4 +1,4 @@
-import WordComponent from "./WordComponent";
+import SplitTextAtChar from "./SplitTextAtChar";
 
 function getDelayedDuration(
   index: number,
@@ -19,9 +19,10 @@ function splitToWords(inputString: string) {
   return words;
 }
 
+const STRING = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+
 const SplitText = () => {
-  const string = "This is a sample text to be split into words.";
-  const words = splitToWords(string);
+  const words = splitToWords(STRING);
 
   const logDelayByWord = () => {
     for (let i = 0; i < words.length; i++) {
@@ -38,24 +39,17 @@ const SplitText = () => {
       </h1>
       <p className="flex flex-wrap items-center gap-1 text-center text-2xl">
         {words.map((word, index) => (
-          <WordComponent key={index} input={word} index={index} />
+          <span key={index} className="inline-block">
+            {word}
+          </span>
         ))}
       </p>
+
       <h1 className="text-maroon font-serif text-4xl font-semibold">
         Split by character
       </h1>
 
-      <p className="flex flex-wrap items-center gap-1 text-center text-2xl">
-        {words.map((word, index) => (
-          <WordComponent
-            key={index}
-            input={word}
-            index={index}
-            isChar
-            animationDelay={getDelayedDuration(index, words)}
-          />
-        ))}
-      </p>
+      <SplitTextAtChar text={STRING} />
     </div>
   );
 };

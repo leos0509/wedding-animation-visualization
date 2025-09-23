@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishesRouteImport } from './routes/wishes'
+import { Route as SplitTextRouteImport } from './routes/split-text'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WishesRoute = WishesRouteImport.update({
   id: '/wishes',
   path: '/wishes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplitTextRoute = SplitTextRouteImport.update({
+  id: '/split-text',
+  path: '/split-text',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/split-text': typeof SplitTextRoute
   '/wishes': typeof WishesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/split-text': typeof SplitTextRoute
   '/wishes': typeof WishesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/split-text': typeof SplitTextRoute
   '/wishes': typeof WishesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/wishes'
+  fullPaths: '/' | '/split-text' | '/wishes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/wishes'
-  id: '__root__' | '/' | '/wishes'
+  to: '/' | '/split-text' | '/wishes'
+  id: '__root__' | '/' | '/split-text' | '/wishes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplitTextRoute: typeof SplitTextRoute
   WishesRoute: typeof WishesRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/wishes'
       fullPath: '/wishes'
       preLoaderRoute: typeof WishesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/split-text': {
+      id: '/split-text'
+      path: '/split-text'
+      fullPath: '/split-text'
+      preLoaderRoute: typeof SplitTextRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplitTextRoute: SplitTextRoute,
   WishesRoute: WishesRoute,
 }
 export const routeTree = rootRouteImport

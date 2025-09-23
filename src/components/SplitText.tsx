@@ -59,9 +59,7 @@ const SplitText = () => {
         className="font-serif text-6xl font-bold"
       />
 
-      <h1 className="text-maroon font-serif text-4xl font-semibold">
-        Demo Header
-      </h1>
+      <h1 className="text-maroon font-serif text-4xl font-semibold">Demo Header</h1>
 
       <DemoSplitTextHeader />
     </div>

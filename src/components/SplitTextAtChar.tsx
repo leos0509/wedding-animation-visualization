@@ -16,7 +16,6 @@ const SplitTextAtChar = ({
   delay = 0,
 }: SplitTextAtCharProps) => {
   const [chars, setChars] = useState<string[]>([]);
-
   useEffect(() => {
     setChars(text.split(""));
   }, [text]);

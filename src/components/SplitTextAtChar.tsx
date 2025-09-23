@@ -1,15 +1,57 @@
+import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-const SplitTextAtChar = ({ text }: { text: string }) => {
+type SplitTextAtCharProps = {
+  text: string;
+  className?: string;
+  isNoClassName?: boolean;
+  delay?: number;
+};
+
+const SplitTextAtChar = ({
+  text,
+  className,
+  isNoClassName = false,
+  delay = 0,
+}: SplitTextAtCharProps) => {
   const [chars, setChars] = useState<string[]>([]);
+
+  console.log("Rendering SplitTextAtChar with text:", text);
+  console.log("Delay", delay);
 
   useEffect(() => {
     setChars(text.split(""));
   }, [text]);
 
+  if (chars.length === 0) return null;
+
+  if (isNoClassName)
+    return chars.map((char, i) => (
+      <span key={i} className="relative inline-block overflow-hidden">
+        <motion.span
+          initial={{ y: "100%", x: -8 }}
+          animate={{ y: 0, x: 0 }}
+          transition={{
+            duration: 0.1,
+            delay: i * 0.1 + delay,
+            type: "tween",
+            ease: "easeInOut",
+          }}
+          className="inline-block"
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      </span>
+    ));
+
   return (
-    <p className="flex flex-wrap items-center gap-0 text-center text-2xl">
+    <p
+      className={cn(
+        "flex flex-wrap items-center gap-0 text-center text-2xl",
+        className,
+      )}
+    >
       {chars.map((char, i) => (
         <span key={i} className="relative inline-block overflow-hidden">
           <motion.span
